@@ -8,30 +8,27 @@ const authRoutes = require("./routes/authRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
-const orderRoutes= require("./routes/orderRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const supplierRoutes = require("./routes/supplierRoutes");
-
 
 dotenv.config();
 
-
 // Connect Database
 connectDB();
-
 
 // Create Express app
 const app = express();
 
 
 // Middleware
-const cors = require("cors");
-
 app.use(cors({
     origin:[
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "https://YOUR_FRONTEND_DOMAIN.vercel.app"
     ],
     credentials:true
 }));
+
 app.use(express.json());
 
 
@@ -53,20 +50,15 @@ app.use("/api/reviews", require("./routes/reviewRoutes"));
 
 // Health Route
 app.get("/api/health", (req,res)=>{
-
     res.json({
         message:"Server is running"
     });
-
 });
 
 
 // Start Server
 const PORT = process.env.PORT || 5000;
 
-
 app.listen(PORT,()=>{
-
     console.log(`Server running on ${PORT}`);
-
 });
