@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
       });
     }
 
-    // Check if user exists
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -35,7 +35,7 @@ exports.register = async (req, res) => {
       role,
     });
 
-    // Never return password/hash
+    // Never return the password/password hash
     res.status(201).json({
       success: true,
       message: "User Registered Successfully",
@@ -52,6 +52,7 @@ exports.register = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Server Error",
+      error: error.message,
     });
   }
 };
@@ -78,7 +79,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Compare password
+    // Compare password with stored bcrypt hash
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -94,11 +95,11 @@ exports.login = async (req, res) => {
 
       return res.status(500).json({
         success: false,
-        message: "JWT configuration is missing on server",
+        message: "Authentication configuration error",
       });
     }
 
-    // Create JWT
+    // Generate JWT
     const token = jwt.sign(
       {
         id: user._id,
@@ -110,6 +111,7 @@ exports.login = async (req, res) => {
       }
     );
 
+    // Return token and safe user information
     res.json({
       success: true,
       token,
@@ -126,6 +128,7 @@ exports.login = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Server Error",
+      error: error.message,
     });
   }
 };
