@@ -24,7 +24,7 @@ const app = express();
 app.use(cors({
     origin:[
         "http://localhost:5173",
-        "https://YOUR_FRONTEND_DOMAIN.vercel.app"
+        "https://textile-marketplace-ogzbr5bk6-arpitsh1s-projects.vercel.app"
     ],
     credentials:true
 }));
