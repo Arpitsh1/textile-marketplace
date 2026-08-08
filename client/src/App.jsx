@@ -27,13 +27,13 @@ import EditProduct from "./pages/supplier/EditProduct";
 
 import Cart from "./pages/buyer/Cart";
 
-import Marketplace from "./pages/Marketplace/Marketplace";
+import Marketplace from "./pages/marketplace/Marketplace";
 
 import SupplierOrders from "./pages/supplier/SupplierOrders";
 
 import MyOrders from "./pages/buyer/MyOrders";
 
-import ProductDetails from "./pages/Marketplace/ProductDetails";
+import ProductDetails from "./pages/marketplace/ProductDetails";
 
 import OrderTracking from "./pages/buyer/OrderTracking";
 
